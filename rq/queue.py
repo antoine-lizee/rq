@@ -56,7 +56,7 @@ class Queue(object):
 
     def __init__(self, name='default', default_timeout=None, connection=None,
                  async=True, job_class=None):
-        self.connection = resolve_connection(connection)
+        self.connection = resolve_connection(connection) if async else None
         prefix = self.redis_queue_namespace_prefix
         self.name = name
         self._key = '{0}{1}'.format(prefix, name)
